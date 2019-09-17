@@ -26,33 +26,32 @@ class Contact extends Component {
 
     impression = ((e)=>{
         this.setState({
-            impression: e.target.value
+            impression: e.target.value,
+            status: true
         });
     })
 
     joinBtn = (()=>{
-        if(this.state.firstName === '' || this.state.lastName === '' || this.state.impression === ''){
-            alert('Please fill all fields')
-            return
-        }else{
-            this.setState({
-                status: true
-        })
-        return
-        }
+        alert('Thanks for joining us'+ this.state.firstName);
+        this.setState({
+            firstName: '',
+            lastName: '',
+            impression: '',
+            status: false
+          })
     })
 
     render() {
-      const button = this.state.status? <div> {this.state.firstName} {this.state.lastName}'s best impression is {this.state.impression}</div> : ""
+        const thing = this.state.status ? <p>{this.state.firstName} {this.state.lastName}'s best impression is {this.state.impression}</p> : '';
 
       return (
        <>
        <h2>Contact</h2>
-        <input onChange={this.firstName} placeholder="First Name"></input>
-        <input onChange={this.lastName} placeholder="Last Name"></input>
-        <input onChange={this.impression} placeholder="Best Impression"></input>
+        <input onChange={this.firstName} value={this.state.firstName} placeholder="First Name"></input>
+        <input onChange={this.lastName} value={this.state.lastName} placeholder="Last Name"></input>
+        <input onChange={this.impression} value={this.state.impression}  placeholder="Best Impression"></input>
         <button onClick={this.joinBtn}>Join Us!</button>
-        {button}
+        {thing}
         <p>Phone: 1-800-WE-REACT</p>
         <p>info@ReactActors.com</p>
        </>
